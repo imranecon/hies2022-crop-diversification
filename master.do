@@ -13,7 +13,7 @@ set more off
 set linesize 120
 
 *-- Root path: change this line only ------------------------------------------
-global root    "D:hies2022-crop-diversification"
+global root    "D:/hies2022-crop-diversification"
 
 *-- Folders -------------------------------------------------------------------
 global data    "$root/data"
