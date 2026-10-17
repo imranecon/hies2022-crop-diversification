@@ -31,7 +31,7 @@ Households are identified by `PSU` and `HHID`.
 
 ## Sample
 
-The analysis sample is rural households that cultivated at least one crop, with non-negative total income and non-missing values on the head’s education, age and sex, household size, land and survey weight. The final sample has [N] households.
+The analysis sample is rural households that cultivated at least one crop, with non-negative total income and non-missing values on the head’s education, age and sex, household size, land and survey weight. The final sample has 2,145 households.
 
 All households stay in the analysis file, and the sample is flagged with `insample`. Survey estimates use `svy, subpop(insample)`, which gives correct standard errors for a subpopulation; dropping the other households first would not.
 
@@ -64,8 +64,7 @@ The survey design is declared with `svyset PSU [pw=hh_wgt], strata(stratum16)`. 
 │   └── derived/         Intermediate files created by the code (not tracked)
 └── output/
     ├── tables/
-    ├── figures/
-    └── logs/            (not tracked)
+    └── figures/
 ```
 
 The build script checks that each household-level file has one row per household and reports match rates for every merge. If a file that should be household-level has duplicate rows, the code stops with a message instead of dropping rows.
@@ -75,17 +74,16 @@ The build script checks that each household-level file has one row per household
 1. Get the HIES 2022 files from BBS and copy them into `data/`.
 2. Open `master.do` and set the root path to the folder where you cloned this repository:
    ```stata
-   global root "C:/path/to/hies2022-crop-diversification"
+   global root "D:/hies2022_crop_diversification"
    ```
 3. Run `master.do`. It installs `estout` from SSC if it is missing, runs the three scripts in order, and writes a log to `output/logs/master.log`.
 
-The code requires Stata 16 or later and was tested in Stata [version].
+The code requires Stata 16 or later and was tested in Stata 18.
 
 ## Main results
 
-[Add two or three sentences on the crop-count coefficient in Models 1 and 2: its size, its precision, and whether Model 3 changes it.]
-
-![Income by number of crops cultivated](output/figures/fig1_income_by_cropgroup.png)
+Each additional crop is associated with about 0.33 log points higher crop sales income (p < 0.01), and the coefficient barely moves when household controls and division fixed effects are added.
+For total household income the association is small and loses significance once controls are included (0.037 to 0.017), which suggests the raw income gap mostly reflects differences between the households that diversify and those that don’t.
 
 ## Limitations
 
@@ -93,9 +91,10 @@ The data are a single cross-section, so the estimates cannot separate the effect
 
 ## Author
 
-Imran Hossain
-Research Associate, BRAC Institute of Governance and Development (BIGD), BRAC University
-[email or website link]
+**Imran Hossain**
+Research Associate
+BRAC Institute of Governance and Development (BIGD)
+BRAC University
 
 ## License
 
